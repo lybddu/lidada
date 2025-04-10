@@ -1,0 +1,64 @@
+spring:
+  # DataSource Config
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://49.235.155.82:3307/lidada?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: lyb12345678
+    # session 失效时间
+  session:
+    timeout: 86400
+  application:
+    name: lidada-backend
+  redis:
+    database: 1
+    host: localhost
+    port: 6379
+    timeout: 5000
+  shardingsphere:
+    #数据源配置
+    datasource:
+      # 多数据源以逗号隔开即可
+      names: lidada
+      lidada:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://49.235.155.82:3307/lidada?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+        username: root
+        password: lyb12345678
+    # 规则配置
+    rules:
+      sharding:
+        # 分片算法配置
+        sharding-algorithms:
+          # 自定义分片规则名
+          answer-table-inline:
+            ## inline 类型是简单的配置文件里面就能写的类型，其他还有自定义类等等
+            type: INLINE
+            props:
+              algorithm-expression: user_answer_$->{appId % 2}
+        tables:
+          user_answer:
+            actual-data-nodes: lidada.user_answer_$->{0..1}
+            # 分表策略
+            table-strategy:
+              standard:
+                sharding-column: appId
+                sharding-algorithm-name: answer-table-inline
+
+
+# 线上配置文件
+server:
+  port: 8101
+  servlet:
+    session:
+      cookie:
+        domain: lidada.llyb.fun
+        max-age: 2592000
+
+# AI 配置
+ai:
+  apiKey: 968483eaef034b8e98b42f4aee5b9902.CznBDaMmltN0HTaw
+logging:
+  level:
+    org.apache.coyote.http11.Http11Processor: DEBUG
