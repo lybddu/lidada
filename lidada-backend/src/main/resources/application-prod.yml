@@ -2,9 +2,9 @@ spring:
   # DataSource Config
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://49.235.155.82:3307/lidada?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-    username: root
-    password: lyb12345678
+    url: jdbc:mysql://自己的ip服务器/lidada?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: 
+    password: 
     # session 失效时间
   session:
     timeout: 86400
@@ -23,9 +23,9 @@ spring:
       lidada:
         type: com.zaxxer.hikari.HikariDataSource
         driver-class-name: com.mysql.cj.jdbc.Driver
-        jdbc-url: jdbc:mysql://49.235.155.82:3307/lidada?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-        username: root
-        password: lyb12345678
+        jdbc-url: jdbc:mysql://自己的ip服务器/lidada?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+        username: 
+        password: 
     # 规则配置
     rules:
       sharding:
@@ -58,7 +58,7 @@ server:
 
 # AI 配置
 ai:
-  apiKey: 968483eaef034b8e98b42f4aee5b9902.CznBDaMmltN0HTaw
+  apiKey: 
 logging:
   level:
     org.apache.coyote.http11.Http11Processor: DEBUG
