@@ -2,7 +2,7 @@
   "miniprogramRoot": "dist/",
   "projectname": "mbti-test-mini",
   "description": "",
-  "appid": "",
+  "appid": "换成自己的",
   "setting": {
     "urlCheck": true,
     "es6": false,
